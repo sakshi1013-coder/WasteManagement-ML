@@ -37,40 +37,37 @@ generation, as specified in Case Study No. 73.
 
 ---
 
-## ML Models (Case Study 73 — 7 Required Models)
+## ML Models (Case Study 73 — 5 Core Models)
 
 | # | Model | Task |
 |---|-------|------|
 | 1 | Linear Regression | Regression |
-| 2 | K-Nearest Neighbors (KNN) | Regression + Classification |
-| 3 | Decision Tree | Regression + Classification |
-| 4 | Random Forest | Regression + Classification |
-| 5 | Logistic Regression | Classification |
-| 6 | Naive Bayes | Classification |
-| 7 | Hierarchical Clustering | Unsupervised |
+| 2 | K-Nearest Neighbors (KNN) | Regression |
+| 3 | Random Forest | Regression |
+| 4 | Logistic Regression | Classification (Waste Tiers: Low/Med/High) |
+| 5 | Hierarchical Clustering | Unsupervised Pattern Discovery |
 
 ---
 
 ## Results Summary
 
-### Regression (R² Score, higher is better)
+### Regression (Target: Annual Waste Generation in Tons)
 
-| Model | R² Score |
-|-------|----------|
-| Random Forest | ~0.95 |
-| Decision Tree | ~0.90 |
-| Linear Regression | ~0.72 |
-| KNN Regressor | ~0.50 |
+| Model | MAE | RMSE | R² Score |
+|-------|-----|------|----------|
+| **Random Forest** | **1.23M** | **2.51M** | **0.9446** |
+| Linear Regression | 2.46M | 5.53M | 0.7322 |
+| KNN Regressor | 4.22M | 10.38M | 0.0562 |
 
-### Classification (Accuracy on Low/Medium/High Waste Tier)
+### Classification (Target: Waste Tier — Low, Medium, High)
 
-| Model | Accuracy |
-|-------|----------|
-| Decision Tree | ~86% |
-| Random Forest | ~84% |
-| Logistic Regression | ~60% |
-| KNN Classifier | ~58% |
-| Naive Bayes | ~51% |
+| Model | Accuracy | Weighted Precision | Weighted Recall | Weighted F1 |
+|-------|----------|-------------------|-----------------|-------------|
+| **Logistic Regression** | **69.77%** | **77.38%** | **69.77%** | **68.97%** |
+
+### Unsupervised Clustering
+
+- **Hierarchical Clustering (Agglomerative)**: 3 distinct developmental clusters identified via Ward linkage dendrogram, mapping directly to developmental waste tiers.
 
 ---
 

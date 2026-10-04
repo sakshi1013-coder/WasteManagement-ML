@@ -14,10 +14,8 @@ from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler, OneHotEncoder
 from sklearn.impute import SimpleImputer
 from sklearn.linear_model import LinearRegression, LogisticRegression
-from sklearn.neighbors import KNeighborsRegressor, KNeighborsClassifier
-from sklearn.tree import DecisionTreeRegressor, DecisionTreeClassifier
-from sklearn.ensemble import RandomForestRegressor, RandomForestClassifier
-from sklearn.naive_bayes import GaussianNB
+from sklearn.neighbors import KNeighborsRegressor
+from sklearn.ensemble import RandomForestRegressor
 from sklearn.metrics import r2_score, accuracy_score
 
 # ──────────────────────────────────────────────
@@ -103,7 +101,6 @@ def load_and_train():
     reg_models = {
         "Linear Regression": LinearRegression(),
         "KNN Regressor": KNeighborsRegressor(n_neighbors=5, weights="distance"),
-        "Decision Tree": DecisionTreeRegressor(max_depth=6, random_state=42),
         "Random Forest": RandomForestRegressor(n_estimators=100, max_depth=10, random_state=42),
     }
     reg_r2 = {}
@@ -111,13 +108,9 @@ def load_and_train():
         model.fit(X_train, y_reg_train)
         reg_r2[name] = round(r2_score(y_reg_test, model.predict(X_test)), 4)
 
-    # Train all classification models
+    # Train classification models
     clf_models = {
         "Logistic Regression": LogisticRegression(max_iter=1000, random_state=42),
-        "KNN Classifier": KNeighborsClassifier(n_neighbors=5, weights="distance"),
-        "Decision Tree": DecisionTreeClassifier(max_depth=5, random_state=42),
-        "Random Forest": RandomForestClassifier(n_estimators=100, max_depth=8, random_state=42),
-        "Naive Bayes": GaussianNB(),
     }
     clf_acc = {}
     for name, model in clf_models.items():
@@ -286,11 +279,9 @@ with st.expander("About this project"):
 **Models implemented:**
 1. Linear Regression
 2. K-Nearest Neighbors (KNN)
-3. Decision Tree
-4. Random Forest
-5. Logistic Regression
-6. Naive Bayes
-7. Hierarchical Clustering (in notebook)
+3. Random Forest
+4. Logistic Regression
+5. Hierarchical Clustering (in notebook)
 
 **Target variable:** `total_msw_total_msw_generated_tons_year` — annual MSW in metric tons.
         """
